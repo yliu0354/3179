@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+</head>
+<body>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 600,
+  "title": "COVID-19 Cases per Country",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yliu0354/3179/main/worldometer_coronavirus_summary_data.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Population: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.active_cases > 0"},
+    {"filter": "datum.total_deaths > 0"},
+    {"filter": "datum.Population > Population_Above"},
+    {
+      "filter": "Continent_selection == null || datum.continent == Continent_selection"
+    },
+    {
+      "calculate": "datum.Confirmed/datum.Population * 10000",
+      "as": "Cases per 10,000 Population"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Confirmed",
+      "type": "quantitative",
+      "title": "Confirmed Cases",
+      "axis": {"tickCount": 7},
+      "scale": {"type": "log", "domain": [10, 100000000]}
+    },
+    "y": {
+      "field": "total_deaths",
+      "type": "quantitative",
+      "axis": {"tickCount": 6},
+      "scale": {"type": "log", "domain": [1, 10000000]}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": 
+      {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [25, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "Confirmed", "type": "quantitative", "format": ","},
+          {"field": "active_cases", "type": "quantitative", "format": ","},
+          {"field": "total_deaths", "type": "quantitative", "format": ","},
+          {"field": "total_recovered", "type": "quantitative", "format": ","},
+          {
+            "field": "Cases per 10,000 Population",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['country'] == 'China' || datum['country'] == 'Singapore' || datum['country'] == 'Australia' || datum['country'] == 'New Zealand' || datum['country'] == 'Italy' || datum['country'] == 'Yemen' ||  datum['country'] == 'United States'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "Confirmed", "type": "quantitative", "format": ","},
+          {"field": "active_cases", "type": "quantitative", "format": ","},
+          {"field": "total_deaths", "type": "quantitative", "format": ","},
+          {"field": "total_recovered", "type": "quantitative", "format": ","},
+          {
+            "field": "Cases per 10,000 Population",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}
+;
+
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
+</body>
+</html>
