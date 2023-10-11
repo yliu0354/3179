@@ -11,7 +11,7 @@ h2 {
     color: #286d90;
 }
 
-p1 {
+p {
     font-size: 18px;
     line-height: 1.5;
 }
@@ -21,8 +21,10 @@ p1 {
     color: rgb(196, 113, 13); 
 }
 
-body {
-    background-color: lightgray;
+.back {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMKeMT7Ql85h0ZN1dxzqoK-6MR4VIt07y4X68_kMBdXiV1Cg2aRPUtlDDuXpN9utKu1pY&usqp=CAU');
+    background-repeat: repeat;
+    background-clip: text;
 }
 
 .page {
