@@ -1,4 +1,4 @@
-country,continent,confirmed,death,recover,active,serious_or_critical,total_cases_per_1m_population,total_deaths_per_1m_population,population
+country,continent,confirmed,death,recover,active,serious,total_cases_per_1m_population,total_deaths_per_1m_population,population
 Afghanistan,Asia,179267,7690,162202,9375,1124,4420,190,40560636
 Albania,Europe,275574,3497,271826,251,2,95954,1218,2871945
 Algeria,Africa,265816,6875,178371,80570,6,5865,152,45325517
