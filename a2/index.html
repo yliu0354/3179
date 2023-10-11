@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Visualizations</title>
+
+    <!-- Include Vega and Vega-Lite scripts from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+    <h1>COVID-19 Visualizations</h1>
+
+    <!-- Container for the death chart -->
+    <div id="death-chart"></div>
+
+    <!-- Container for the recover chart -->
+    <div id="recover-chart"></div>
+
+    <!-- Container for the pie chart -->
+    <div id="pie-chart"></div>
+
+    <script>
+        // Load and embed the death chart
+        vegaEmbed('#death-chart', 'https://github.com/yliu0354/3179/blob/main/a2/death.json')
+            .then(result => {})
+            .catch(console.error);
+
+        // Load and embed the recover chart
+        vegaEmbed('#recover-chart', 'https://github.com/yliu0354/3179/blob/main/a2/recover.json')
+            .then(result => {})
+            .catch(console.error);
+
+        // Load and embed the pie chart
+        vegaEmbed('#pie-chart', 'https://github.com/yliu0354/3179/blob/main/a2/pie.json')
+            .then(result => {})
+            .catch(console.error);
+    </script>
+</body>
+
+</html>
