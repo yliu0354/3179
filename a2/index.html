@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>COVID Visualisations</title>
+  <title>COVID Visualisations 2020-2022</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -20,6 +20,7 @@
 
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+  
 
 
 </head>
@@ -28,73 +29,91 @@
 
   <div class="page">
 
-    <!-- pure grid group -->
+    <!-- page1 -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <h1>COVID Visualisations</h1>
-        <p>This page demonstrates how you can use pure.css grid for your layout.</p>
+        <h1>COVID Visualisations 2020-2022</h1>
+        <p1>In the past few years, the <span class="highlight">COVID-19</span> epidemic has swept the world. 
+            This virus is long-lasting and highly contagious. 
+            Many people have not been spared. 
+            This epidemic has had a great impact on people's <span class="highlight">lives </span>
+            <span class="highlight">and health</span>.</p1>
+        <br>
+        <br>
+        <p1>The following visualization shows the global impact of the epidemic during 2020-2022, 
+            recording in detail the number of <span class="highlight">infections</span> 
+            and <span class="highlight">recoveries</span> in each region.</p1>
       </div>
     </div>
-    <!-- end pure grid group -->
+    <!-- page2 -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description description-left">
+            <h2>heading</h2>
+              <div id="vis4" class="vis-container"></div>
+          </div>
+        </div>
+      </div>
+    <!-- description -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <p>xxx</p>
+        </div>
+    </div>
 
-    <!-- pure grid group -->
+    <!-- page3 -->
     <div class="pure-g">
       <div class="pure-u-1-2">
         <div class="description description-left">
-          <h2>Two Columns Layout</h2>
-          <p>The first column contains text and the second column contains a visualisation.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
+          <h2>heading</h2>
+          <p>xxx</p>
         </div>
       </div>
       <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="description description-left">
-          <h2>Three Equal Columns</h2>
-          <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat
-            sed. Egestas purus viverra accumsan in nisl. Egestas purus viverra accumsan in nisl.</p>
+        <div class="description description-right">
+            <div id="vis1" class="vis-container"></div>
         </div>
       </div>
-      <div class="pure-u-1-3">
-        <div id="vis4" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-3" style="width: 31.5%;">
-        <div id="vis3" class="vis-container" style="margin-left: 15px;"></div>
-      </div>
-
     </div>
-    <!-- end pure grid group -->
 
-    <!-- pure grid group -->
+
+    <!-- page4 -->
     <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div id="vis2" class="vis-container"></div>
+      <div class="pure-u-1-2">
+        <div class="description description-left">
+          <h2>heading</h2>
+          <p>xxx</p>
+        </div>
       </div>
       <div class="pure-u-1-3">
         <div class="description description-right">
-          <h2>First and Second Columns Combined</h2>
-          <p>The first and second columns are combined. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien
-            faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+            <div id="vis2" class="vis-container"></div>
         </div>
       </div>
-
     </div>
-    <!-- end pure grid group -->
 
+
+    <!-- page5 -->
     <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-left">
+            <h2>heading</h2>
+            <div id="vis3" class="vis-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- description -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <p>xxx</p>
+        </div>
+    </div>
+
+    <!-- Note -->
       <div class="pure-u-1-1 small-font">
-        <p>This visualisation is created by <a href="https://fit3179.github.io/Vega-Lite/" target="_blank">FIT3179
-            Teaching Team</a>. The datasource is <a href="#" target=" _blank">some data repository online</href>.</p>
+        <p>Note: This data is only recorded from 2020-2-15 until 2022-05-14,data source from 
+            <a href="https://www.kaggle.com/datasets/josephassaker/covid19-global-dataset?select=worldometer_coronavirus_summary_data.csvco" target="_blank">Website</a>.
+             </p>
       </div>
     </div>
 
@@ -104,20 +123,15 @@
   <script type="text/javascript">
     var specVis1 = "recover.json";
     var specVis2 = "pie.json";
-
+    var specVis3 = "global.json";
+    var specVis4 = "map.json";
     vegaEmbed('#vis1', specVis1, { "actions": false });
 
-    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {}).catch(console.error);
 
-    vegaEmbed('#vis3', specVis1, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {}).catch(console.error);
 
-    vegaEmbed('#vis4', specVis2, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {}).catch(console.error);
   </script>
 </body>
 

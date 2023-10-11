@@ -4,6 +4,21 @@ body *{
 
 h1 {
     font-weight: 900;
+    color: #286d90;
+}
+
+h2 {
+    color: #286d90;
+}
+
+p1 {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.highlight {
+    font-weight: 700; 
+    color: rgb(196, 113, 13); 
 }
 
 body {
@@ -28,7 +43,7 @@ h1 {
 }
 
 .description-right {
-    padding-left: 20px;
+    padding-left: 100px;
 }
 
 .description-left {
@@ -41,4 +56,9 @@ h1 {
 
 .small-font {
     font-size: 14px;
+}
+
+.separator {
+    border-top: 40px solid #d01e1e; /* 设置分隔线的样式，可以调整颜色、宽度和样式 */
+    margin: 40px 0; /* 设置分隔线上下的间距 */
 }

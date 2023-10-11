@@ -1,0 +1,98 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv",
+      "format": {"type": "csv"}
+    },
+      "params": [
+      {
+        "name": "Total_Confirmed",
+        "value": 0,
+        "bind": {
+          "input": "range",
+          "min": 0,
+          "max": 10000000,
+          "step": 2000,
+          "name": "Total Confirmed Population: "
+        }
+      },
+      {
+        "name": "Continent_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Africa",
+            "Asia",
+            "Australia/Oceania",
+            "Europe",
+            "North America",
+            "South America"
+            ],
+          "labels": [
+            "Show All",
+            "Africa",
+            "Asia",
+            "Australia/Oceania",
+            "Europe",
+            "North America",
+            "South America"
+          ],
+          "name": "Continent Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "datum.population > 0 && datum.total_deaths_per_1m_population > 2"
+      },
+      {
+        "filter": "Continent_selection == null || datum.continent == Continent_selection"
+      },
+      {"filter": "datum.confirmed > Total_Confirmed"}
+    ],
+    "mark": "circle",
+    "encoding": {
+      "x": {
+        "field": "total_cases_per_1m_population",
+        "type": "quantitative",
+        "title": "Total Cases Per 1m Population",
+        "axis": {"tickCount": 3},
+        "scale": {"type": "log", "domain": [100, 1000000]}
+      },
+      "y": {
+        "field": "total_deaths_per_1m_population",
+        "type": "quantitative",
+        "title": "Total Deaths Per 1m Population",
+        "axis": {"tickCount": 3},
+        "scale": {"type": "log", "domain": [1, 10000]}
+      },
+      "size": {
+        "field": "confirmed",
+        "type": "quantitative",
+        "title": "Total Confirmed",
+        "scale": {
+              "type": "threshold",
+              "domain": [50000,500000, 1000000, 5000000, 10000000],
+              "range": [25, 50, 150, 200, 300, 400]
+            },
+            "legend": {"format": ".1s"}
+      },
+      "color": {
+        "field": "continent",
+        "type": "nominal",
+        "title": " "
+      },
+      "tooltip": [
+        {"field": "country", "type": "nominal", "title": "Country"},
+        {"field": "total_cases_per_1m_population", "type": "quantitative", "title": "total cases per 1m"},
+        {"field": "total_deaths_per_1m_population", "type": "quantitative", "title": "total deaths per 1m"},
+        {"field": "confirmed", "type": "quantitative", "title": "Total Confirmed"},
+        {"field": "population", "type": "quantitative", "title": "Population"}
+      ]
+    },
+    "title": "Global overview of confirmed cases and mortality"
+  }
+  
