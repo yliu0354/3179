@@ -1,0 +1,30 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv"
+    },
+    "transform": [
+      {"filter": "datum.continent != null"},
+      {
+        "aggregate": [
+          {"op": "sum", "field": "death", "as": "totalDeaths"},
+          {"op": "sum", "field": "confirmed", "as": "totalConfirmed"}
+        ],
+        "groupby": ["continent"]
+      },
+      {"calculate": "(datum.totalDeaths / datum.totalConfirmed)*100", "as": "continentDeathRate"},
+      {"calculate": "format(datum.continentDeathRate, '.2f') + '%'", "as": "formattedDeathRate"}
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "continent", "type": "nominal", "title": "Continent"},
+      "y": {"field": "continentDeathRate", "type": "quantitative", "title": "Death Rate"},
+      "color": {"field": "continent", "type": "nominal", "title": "Continent"},
+      "tooltip": [
+        {"field": "formattedDeathRate", "type": "nominal", "title": "Death Rate"},
+        {"field": "totalDeaths", "type": "quantitative", "title": "Total Deaths"}
+      ]
+    },
+    "title": "Death Rate By Continent"
+  }
+  

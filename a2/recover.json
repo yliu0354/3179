@@ -1,0 +1,30 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv"
+    },
+    "transform": [
+      {"filter": "datum.continent != null"},
+      {
+        "aggregate": [
+          {"op": "sum", "field": "recover", "as": "totalRecovered"},
+          {"op": "sum", "field": "confirmed", "as": "totalConfirmed"}
+        ],
+        "groupby": ["continent"]
+      },
+      {"calculate": "(datum.totalRecovered / datum.totalConfirmed)*100", "as": "continentRecoveryRate"},
+      {"calculate": "format(datum.continentRecoveryRate, '.2f') + '%'", "as": "formattedRecoveryRate"}
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "continent", "type": "nominal", "title": " "},
+      "y": {"field": "continentRecoveryRate", "type": "quantitative", "title": "Recovery Rate"},
+      "color": {"field": "continent", "type": "nominal", "title": " "},
+      "tooltip": [
+        {"field": "formattedRecoveryRate", "type": "nominal", "title": "Recovery Rate"},
+        {"field": "totalRecovered", "type": "quantitative", "title": "Total Recovered"}
+      ]
+    },
+    "title": "Recovery Rate By Continent"
+  }
+  
