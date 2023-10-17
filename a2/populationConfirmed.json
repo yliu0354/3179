@@ -1,0 +1,91 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv"
+    },
+    "width": 600,
+    "height":400,
+    "title": "Population and Confirmed Diagnosis",
+    "transform": [
+      {"filter": "datum.confirmed >0 && datum.population > 0"}
+    ],
+    "layer": [
+      {
+        "mark": "point",
+        "encoding": {
+          "x": {
+            "field": "confirmed",
+            "type": "quantitative",
+            "title": "Confirmed cases",
+            "axis": {"tickCount": 5},
+            "scale": {"domain": [0, 86000000]}
+          },
+          "y": {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "axis": {"tickCount": 2},
+            "scale": {"domain": [0, 1500000000]}
+          },
+          "tooltip": [
+            {"field": "country", "type": "nominal", "title": "Country"},
+            {"field": "confirmed", "type": "quantitative", "title": "Confirmed cases"},
+            {"field": "population", "type": "quantitative", "title": "Population"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {"value":210}, 
+          "y": {"value": 390}, 
+          "text": {"value": "France"},
+          "color": {"value": "black"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {"value": 10}, 
+          "y": {"value": 30}, 
+          "text": {"value": "China"},
+          "color": {"value": "black"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {"value": 560}, 
+          "y": {"value": 300}, 
+          "text": {"value": "USA"},
+          "color": {"value": "black"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {"value": 290}, 
+          "y": {"value": 15}, 
+          "text": {"value": "India"},
+          "color": {"value": "black"}
+        }
+      }
+    ]
+  }
+  

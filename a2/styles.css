@@ -13,12 +13,27 @@ h2 {
 
 p {
     font-size: 18px;
-    line-height: 1.5;
+    line-height: 2;
 }
 
-.highlight {
+.orange {
     font-weight: 700; 
     color: rgb(196, 113, 13); 
+}
+
+.green {
+    font-weight: 700; 
+    color: rgb(110, 183, 146); 
+}
+
+.blue {
+    font-weight: 700; 
+    color: rgb(99, 196, 229); 
+}
+
+.pink {
+    font-weight: 700; 
+    color: rgb(248, 106, 123); 
 }
 
 .back {
@@ -39,9 +54,9 @@ p {
     width: 100%;
 }
 
-.description h2,
-h1 {
-    margin-top: 0px;
+.vis-container1 {
+    width: 100%;
+    margin-top: 70px;
 }
 
 .description-right {
@@ -60,7 +75,4 @@ h1 {
     font-size: 14px;
 }
 
-.separator {
-    border-top: 40px solid #d01e1e; /* 设置分隔线的样式，可以调整颜色、宽度和样式 */
-    margin: 40px 0; /* 设置分隔线上下的间距 */
-}
+

@@ -1,13 +1,24 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Total Confirmed By Contient",
+  "title": "Total Confirmed By Continent",
   "data": {
-    "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv"  
+    "url": "https://raw.githubusercontent.com/yliu0354/3179/main/a2/covid.csv"
   },
   "transform": [
     {
-      "aggregate": [{"op": "sum", "field": "confirmed", "as": "totalConfirmedByContinent"}],
+      "aggregate": [
+        { "op": "sum", "field": "confirmed", "as": "totalConfirmedByContinent" }
+      ],
       "groupby": ["continent"]
+    },
+    {
+      "joinaggregate": [
+        { "op": "sum", "field": "totalConfirmedByContinent", "as": "totalConfirmed" }
+      ]
+    },
+    {
+      "calculate": "datum.totalConfirmedByContinent / datum.totalConfirmed",
+      "as": "percentage"
     }
   ],
   "mark": "arc",
@@ -24,12 +35,8 @@
     },
     "tooltip": [
       { "field": "continent", "type": "nominal", "title": "Continent" },
-      { "field": "totalConfirmedByContinent", "type": "quantitative", "title": "Total Confirmed Cases" }
+      { "field": "totalConfirmedByContinent", "type": "quantitative", "title": "Total Confirmed Cases" },
+      { "field": "percentage", "type": "quantitative", "title": "Percentage", "format": ".1%" }
     ]
   }
 }
-
-
-
-
-
